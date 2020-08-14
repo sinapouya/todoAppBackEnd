@@ -1,4 +1,4 @@
-package com.sina.todoappbackend.service;
+package com.sina.todoappbackend.resources;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
