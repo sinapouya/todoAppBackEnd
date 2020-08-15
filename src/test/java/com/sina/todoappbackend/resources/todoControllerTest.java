@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
 
 import com.sina.todoappbackend.entity.Todo;
 import com.sina.todoappbackend.service.HardCodedToDoService;
@@ -39,6 +40,12 @@ public class todoControllerTest {
 		
 		when(toDoService.findAll()).thenReturn(listOfTodos);
 		assertEquals(2, todoController.getAllTodoes("ali").size());
+	}
+	@Test
+	final void deleteTodoByIdTest() {
+		ResponseEntity<Void> responseEntity =  todoController.deleteById("ali", 3);
+		assertEquals(404, responseEntity.getStatusCodeValue(), "the return no content");
+		
 	}
 
 }
