@@ -1,0 +1,33 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f3ed72ca231, pid=12446, tid=12465
+#
+# JRE version: Java(TM) SE Runtime Environment (14.0.1+7) (build 14.0.1+7)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (14.0.1+7, mixed mode, sharing, tiered, compressed oops, g1 gc, linux-amd64)
+# Problematic frame:
+# C  [libjimage.so+0x4231]  ImageStrings::find(Endian*, char const*, int*, unsigned int)+0x71
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport %p %s %c %d %P %E" (or dumping to /home/sina/my_work_place/fullstack-todo-app/backend/todoappbackend/core.12446)
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:43297 -javaagent:/media/sina/7bba6bec-3f6f-41a9-b1a2-1eaa8f89608b/dedd/programming/eclipse-jee-2020-06-R-linux-gtk-x86_64/eclipse/configuration/org.eclipse.osgi/406/0/.cp/lib/javaagent-shaded.jar -Dfile.encoding=UTF-8 com.sina.todoappbackend.TodoappbackendApplication
+
+Host: Intel(R) Core(TM) i3-2330M CPU @ 2.20GHz, 4 cores, 3G, Ubuntu 20.04 LTS
+Time: Sat Aug 15 15:24:52 2020 +0430 elapsed time: 3484 seconds (0d 0h 58m 4s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f3ed0125000):  JavaThread "Signal Dispatcher" daemon [_thread_in_vm, id=12465, stack(0x00007f3eb80b4000,0x00007f3eb81b5000)]
+
+Stack: [0x00007f3eb80b4000,0x00007f3eb81b5000],  sp=0x00007f3eb81b21d0,  free space=1016k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libjimage.so+0x4231]  ImageStrings::find(Endian*, char const*, int*, unsigned int)+0x71
+C  [libjimage.so+0x4d7a]  ImageFileReader::find_location_index(char const*, unsigned long long*) const+0x3a
+C  [libjimage.so+0x5271]  JIMAGE_FindResource+0xf1
+V  [libjvm.so+0x50f4c3]

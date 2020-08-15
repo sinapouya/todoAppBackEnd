@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sina.todoappbackend.entity.Todo;
 import com.sina.todoappbackend.service.HardCodedToDoService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TodoController {
 	@Autowired
 	private HardCodedToDoService toDoService;
@@ -32,10 +33,10 @@ public class TodoController {
 											.collect(Collectors.toList());
 											
 	}
-	@DeleteMapping(value = "/users/{userName}/todo/{todoId}")
+	@DeleteMapping(value = "/users/{userName}/todos/{todoId}")
 	public ResponseEntity<Void> deleteById(@PathVariable String userName,
-											@PathVariable int id){
-			Optional<Todo> todo = toDoService.deleteById(id);
+											@PathVariable Long todoId){
+			Optional<Todo> todo = toDoService.deleteById(todoId);
 			if(todo.isPresent()) {
 				return ResponseEntity.noContent().build();
 			}else {

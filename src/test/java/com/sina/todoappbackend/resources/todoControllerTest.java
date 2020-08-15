@@ -28,7 +28,7 @@ public class todoControllerTest {
 	@BeforeEach
 	void setUp() throws Exception{
 		MockitoAnnotations.initMocks(this);
-		listOfTodos=new ArrayList<Todo>();int idCounter=1;
+		listOfTodos=new ArrayList<Todo>();Long idCounter=1l;
 		listOfTodos.add(new Todo(++idCounter,"sina","dentist session",new Date(),false));
 		listOfTodos.add(new Todo(++idCounter,"sina","interview session",new Date(),false));
 		listOfTodos.add(new Todo(++idCounter,"ali","study streams",new Date(),true));
@@ -43,7 +43,7 @@ public class todoControllerTest {
 	}
 	@Test
 	final void deleteTodoByIdTest() {
-		ResponseEntity<Void> responseEntity =  todoController.deleteById("ali", 3);
+		ResponseEntity<Void> responseEntity =  todoController.deleteById("ali", 3l);
 		assertEquals(404, responseEntity.getStatusCodeValue(), "the return no content");
 		
 	}

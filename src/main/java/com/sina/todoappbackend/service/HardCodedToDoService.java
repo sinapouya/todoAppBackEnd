@@ -13,7 +13,7 @@ import com.sina.todoappbackend.entity.Todo;
 @Service
 public class HardCodedToDoService {
 	private static List<Todo> listOfTodos=new ArrayList<Todo>();
-	private static int idCounter=1;
+	private static Long idCounter=1l;
 	static {
 		listOfTodos.add(new Todo(++idCounter,"sina","dentist session",new Date(),false));
 		listOfTodos.add(new Todo(++idCounter,"sina","interview session",new Date(),false));
@@ -24,14 +24,14 @@ public class HardCodedToDoService {
 	public List<Todo> findAll(){
 		return listOfTodos;
 	}
-	public Optional<Todo> deleteById(int id) {
+	public Optional<Todo> deleteById(Long id) {
 		Optional<Todo> todo = findById(id);
 		todo.ifPresent(item->listOfTodos.remove(item));
 		return todo;
 	}
-	public Optional<Todo> findById(int id) {
+	public Optional<Todo> findById(Long id) {
 		Optional<Todo> todo = listOfTodos.stream()
-			.filter(item->item.getId()==id)
+			.filter(item->item.getId().equals(id))
 			.findAny();
 		return todo;
 	}

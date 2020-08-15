@@ -3,7 +3,7 @@ package com.sina.todoappbackend.entity;
 import java.util.Date;
 
 public class Todo {
-	private long id;
+	private Long id;
 	private String userName;
 	private String description;
 	private Date targetDate;
@@ -13,7 +13,7 @@ public class Todo {
 		super();
 	}
 	
-	public Todo(long id, String userName, String description, Date targetDate, boolean isDone) {
+	public Todo(Long id, String userName, String description, Date targetDate, boolean isDone) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -28,12 +28,14 @@ public class Todo {
 				+ targetDate + ", isDone=" + isDone + "]";
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getDescription() {
 		return description;
 	}
