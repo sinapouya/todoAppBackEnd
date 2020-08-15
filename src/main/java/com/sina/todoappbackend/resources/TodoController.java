@@ -20,7 +20,7 @@ import com.sina.todoappbackend.entity.Todo;
 import com.sina.todoappbackend.service.HardCodedToDoService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class TodoController {
 	@Autowired
 	private HardCodedToDoService toDoService;
