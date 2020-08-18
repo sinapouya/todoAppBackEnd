@@ -35,5 +35,15 @@ public class HardCodedToDoService {
 			.findAny();
 		return todo;
 	}
+	public Optional<Todo> save(Todo todo){
+		if(todo.getId()==null) {
+			todo.setId(++idCounter);;
+			listOfTodos.add(todo);
+		}else {
+			listOfTodos.remove(findById(todo.getId()).get());
+			listOfTodos.add(todo);
+		}
+		return Optional.of(todo);
+	}
 	
 }
