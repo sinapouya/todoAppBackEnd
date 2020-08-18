@@ -33,6 +33,12 @@ public class TodoController {
 											.collect(Collectors.toList());
 											
 	}
+	@GetMapping(value = "/users/{userName}/todos/{todoId}")
+	public Optional<Todo> getTodoe(@PathVariable Long todoId){
+		 Optional<Todo> optionalTodo = toDoService.findById(todoId);
+		 return optionalTodo;
+											
+	}
 	@DeleteMapping(value = "/users/{userName}/todos/{todoId}")
 	public ResponseEntity<Void> deleteById(@PathVariable String userName,
 											@PathVariable Long todoId){
@@ -42,6 +48,5 @@ public class TodoController {
 			}else {
 				return ResponseEntity.notFound().build();
 			}			
-		
-		}
+	}
 }
