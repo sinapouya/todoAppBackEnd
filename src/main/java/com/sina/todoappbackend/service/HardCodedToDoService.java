@@ -36,8 +36,8 @@ public class HardCodedToDoService {
 		return todo;
 	}
 	public Optional<Todo> save(Todo todo){
-		if(todo.getId()==null) {
-			todo.setId(++idCounter);;
+		if(todo.getId()==null || todo.getId().equals(-1l)) {
+			todo.setId(++idCounter);
 			listOfTodos.add(todo);
 		}else {
 			listOfTodos.remove(findById(todo.getId()).get());

@@ -72,7 +72,7 @@ public class TodoController {
 			return ResponseEntity.noContent().build();
 		}
 	}
-	@PostMapping(value = "/users/{userName}/todos/")
+	@PostMapping(value = "/users/{userName}/todos")
 	public ResponseEntity<Void> updateTodo(@PathVariable String userName,
 										    @RequestBody Todo todo){
 		Optional<Todo> optionalCreatedTodo = toDoService.save(todo);
