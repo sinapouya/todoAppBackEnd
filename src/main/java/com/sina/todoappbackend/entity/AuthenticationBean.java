@@ -1,14 +1,14 @@
 package com.sina.todoappbackend.entity;
 
-public class Message {
+public class AuthenticationBean {
 	private String message;
 
-	public Message(String message) {
+	public AuthenticationBean(String message) {
 		super();
 		this.message = message;
 	}
 
-	public Message() {
+	public AuthenticationBean() {
 		super();
 	}
 
