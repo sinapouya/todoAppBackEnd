@@ -1,4 +1,4 @@
-package com.sina.todoappbackend.JWTConfig.resources.JWT;
+package com.sina.todoappbackend.resources.JWTConfig.JWT;
 
 import java.io.IOException;
 import java.io.Serializable;

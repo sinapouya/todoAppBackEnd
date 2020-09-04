@@ -1,4 +1,4 @@
-package com.sina.todoappbackend.JWTConfig.resources;
+package com.sina.todoappbackend.resources.JWTConfig;
 
 public class AuthenticationException extends RuntimeException{
 	public AuthenticationException(String message,Throwable cause) {

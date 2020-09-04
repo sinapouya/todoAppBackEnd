@@ -1,4 +1,4 @@
-package com.sina.todoappbackend.JWTConfig.resources;
+package com.sina.todoappbackend.resources.JWTConfig;
 
 import java.util.Objects;
 
@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sina.todoappbackend.JWTConfig.resources.JWT.JWTWebSecurityConfig;
-import com.sina.todoappbackend.JWTConfig.resources.JWT.JwtInMemoryUserDetailsService;
-import com.sina.todoappbackend.JWTConfig.resources.JWT.JwtTokenUtil;
-import com.sina.todoappbackend.JWTConfig.resources.JWT.JwtUserDetails;
+import com.sina.todoappbackend.resources.JWTConfig.JWT.JWTWebSecurityConfig;
+import com.sina.todoappbackend.resources.JWTConfig.JWT.JwtInMemoryUserDetailsService;
+import com.sina.todoappbackend.resources.JWTConfig.JWT.JwtTokenUtil;
+import com.sina.todoappbackend.resources.JWTConfig.JWT.JwtUserDetails;
 @RestController
 @CrossOrigin(value = "http://localhost:4200")
 public class JwtAuthenticationRestController {

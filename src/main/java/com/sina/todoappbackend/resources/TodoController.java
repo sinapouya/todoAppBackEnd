@@ -26,12 +26,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.sina.todoappbackend.entity.Todo;
 import com.sina.todoappbackend.service.HardCodedToDoService;
+import com.sina.todoappbackend.service.ToDoJpaRepository;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class TodoController {
 	@Autowired
-	private HardCodedToDoService toDoService;
+	private ToDoJpaRepository toDoService;
 	
 	@GetMapping(value = "/users/{userName}/todos")
 	public List<Todo> getAllTodoes(@PathVariable String userName){
@@ -53,8 +54,8 @@ public class TodoController {
 	@DeleteMapping(value = "/users/{userName}/todos/{todoId}")
 	public ResponseEntity<Void> deleteById(@PathVariable String userName,
 											@PathVariable Long todoId){
-			Optional<Todo> todo = toDoService.deleteById(todoId);
-			if(todo.isPresent()) {
+			toDoService.deleteById(todoId);
+			if(toDoService.existsById(todoId)) {
 				return ResponseEntity.noContent().build();
 			}else {
 				return ResponseEntity.notFound().build();
@@ -64,26 +65,16 @@ public class TodoController {
 	public ResponseEntity<Todo> updateTodo(@PathVariable String userName,
 										   @PathVariable Long todoId,
 										    @RequestBody Todo todo){
-		Optional<Todo> optionalTodo = toDoService.save(todo);
-		if(optionalTodo.isPresent()) {
-			return new ResponseEntity<Todo>(optionalTodo.get(),HttpStatus.CREATED);
-			
-		}else {
-			return ResponseEntity.noContent().build();
-		}
+		Todo todoUpdated = toDoService.save(todo);
+		return new ResponseEntity<Todo>(todoUpdated,HttpStatus.OK);
+		
 	}
 	@PostMapping(value = "/users/{userName}/todos")
-	public ResponseEntity<Void> updateTodo(@PathVariable String userName,
+	public ResponseEntity<Void> createTodo(@PathVariable String userName,
 										    @RequestBody Todo todo){
-		Optional<Todo> optionalCreatedTodo = toDoService.save(todo);
-		if(optionalCreatedTodo.isPresent()) {
-			
-			URI uri =ServletUriComponentsBuilder.fromCurrentRequest()
-					.path("/{id}").buildAndExpand(optionalCreatedTodo.get().getId()).toUri();
-			return ResponseEntity.created(uri).build();
-			
-		}else {
-			return ResponseEntity.noContent().build();
-		}
+		Todo createdTodo = toDoService.save(todo);
+		URI uri =ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(createdTodo.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 }

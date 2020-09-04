@@ -1,4 +1,4 @@
-package com.sina.todoappbackend.JWTConfig.resources.JWT;
+package com.sina.todoappbackend.resources.JWTConfig.JWT;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
