@@ -36,9 +36,10 @@ public class TodoController {
 	
 	@GetMapping(value = "/users/{userName}/todos")
 	public List<Todo> getAllTodoes(@PathVariable String userName){
-		return toDoService.findAll().stream().filter(todo->
-											todo.getUserName().equalsIgnoreCase(userName))
-											.collect(Collectors.toList());
+		return toDoService.findByUserName(userName); 
+//											.findAll().stream().filter(todo->
+//											todo.getUserName().equalsIgnoreCase(userName))
+//											.collect(Collectors.toList());
 											
 	}
 	@GetMapping(value = "/users/{userName}/todos/{todoId}")
@@ -65,6 +66,7 @@ public class TodoController {
 	public ResponseEntity<Todo> updateTodo(@PathVariable String userName,
 										   @PathVariable Long todoId,
 										    @RequestBody Todo todo){
+		
 		Todo todoUpdated = toDoService.save(todo);
 		return new ResponseEntity<Todo>(todoUpdated,HttpStatus.OK);
 		
@@ -72,6 +74,7 @@ public class TodoController {
 	@PostMapping(value = "/users/{userName}/todos")
 	public ResponseEntity<Void> createTodo(@PathVariable String userName,
 										    @RequestBody Todo todo){
+		todo.setUserName(userName);
 		Todo createdTodo = toDoService.save(todo);
 		URI uri =ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(createdTodo.getId()).toUri();
