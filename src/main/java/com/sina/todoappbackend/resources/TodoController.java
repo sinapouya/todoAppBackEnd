@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,6 +36,7 @@ public class TodoController {
 	private ToDoJpaRepository toDoService;
 	
 	@GetMapping(value = "/users/{userName}/todos")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public List<Todo> getAllTodoes(@PathVariable String userName){
 		return toDoService.findByUserName(userName); 
 //											.findAll().stream().filter(todo->
@@ -43,6 +45,7 @@ public class TodoController {
 											
 	}
 	@GetMapping(value = "/users/{userName}/todos/{todoId}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Todo> getTodo(@PathVariable Long todoId){
 		 Optional<Todo> optionalTodo = toDoService.findById(todoId);
 		 if(optionalTodo.isPresent()) {
@@ -53,6 +56,7 @@ public class TodoController {
 											
 	}
 	@DeleteMapping(value = "/users/{userName}/todos/{todoId}")
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Void> deleteById(@PathVariable String userName,
 											@PathVariable Long todoId){
 			toDoService.deleteById(todoId);
@@ -63,6 +67,7 @@ public class TodoController {
 			}			
 	}
 	@PutMapping(value = "/users/{userName}/todos/{todoId}")
+	@PreAuthorize(value = "hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Todo> updateTodo(@PathVariable String userName,
 										   @PathVariable Long todoId,
 										    @RequestBody Todo todo){
@@ -72,6 +77,7 @@ public class TodoController {
 		
 	}
 	@PostMapping(value = "/users/{userName}/todos")
+	@PreAuthorize(value = "hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Void> createTodo(@PathVariable String userName,
 										    @RequestBody Todo todo){
 		todo.setUserName(userName);

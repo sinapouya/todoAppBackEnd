@@ -3,6 +3,7 @@ package com.sina.todoappbackend.resources.JWTConfig.JWT;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +16,10 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService{
 
 	static List<JwtUserDetails> inMemoryUserList = new ArrayList<JwtUserDetails>();
 	static {
-		inMemoryUserList.add(new JwtUserDetails(1l, "sina", 
-				"$2a$10$5TPQplg97v740OEDx/9ZJ.E5i.pfrydvpkK9N1k/sFltGKC.Hxao6", "ROLE_USER_2"));//Zling4u@
-		inMemoryUserList.add(new JwtUserDetails(2l, "user", 
-				"$2a$10$l.WAkZU6utRTiJOP43IZ9Ogv3bYtVeSZoE70kg/wZbrc.y1.u9NY6", "ROLE_USER_2"));//passw0rd@123#123
+//		inMemoryUserList.add(new JwtUserDetails(1l, "sina", 
+//				"$2a$10$5TPQplg97v740OEDx/9ZJ.E5i.pfrydvpkK9N1k/sFltGKC.Hxao6", "ROLE_USER_2"));//Zling4u@
+//		inMemoryUserList.add(new JwtUserDetails(2l, "user", 
+//				"$2a$10$l.WAkZU6utRTiJOP43IZ9Ogv3bYtVeSZoE70kg/wZbrc.y1.u9NY6", "ROLE_USER_2"));//passw0rd@123#123
 		
 	}
 	@Override

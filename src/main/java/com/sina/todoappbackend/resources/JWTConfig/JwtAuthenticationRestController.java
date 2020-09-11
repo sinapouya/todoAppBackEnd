@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sina.todoappbackend.resources.JWTConfig.JWT.JWTWebSecurityConfig;
 import com.sina.todoappbackend.resources.JWTConfig.JWT.JwtInMemoryUserDetailsService;
+import com.sina.todoappbackend.resources.JWTConfig.JWT.JwtJpaUserDetailsService;
 import com.sina.todoappbackend.resources.JWTConfig.JWT.JwtTokenUtil;
 import com.sina.todoappbackend.resources.JWTConfig.JWT.JwtUserDetails;
 @RestController
@@ -39,7 +40,7 @@ public class JwtAuthenticationRestController {
     private JWTWebSecurityConfig jwtWebSecurityConfig;
 	
 	@Autowired
-	private JwtInMemoryUserDetailsService jwtInMemoryUserDetailsService;
+	private JwtJpaUserDetailsService jwtJpaUserDetailsService;
 	
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil; 
@@ -49,7 +50,7 @@ public class JwtAuthenticationRestController {
 		throws AuthenticationException{
 		authenticate(jwtTokenRequst.getUsername(),jwtTokenRequst.getPassword());
 		
-		final UserDetails userDetails = jwtInMemoryUserDetailsService.
+		final UserDetails userDetails = jwtJpaUserDetailsService.
 				loadUserByUsername(jwtTokenRequst.getUsername());
 		final String token = jwtTokenUtil.generateToken(userDetails);
 		return ResponseEntity.ok(new JwtTokenResponse(token));
@@ -59,7 +60,7 @@ public class JwtAuthenticationRestController {
 		String authToken = request.getHeader(tokenHeader);
 		final String token = authToken.substring(7);
 		String username = jwtTokenUtil.getUserNameFromToken(token);
-	    JwtUserDetails user = (JwtUserDetails) jwtInMemoryUserDetailsService.loadUserByUsername(username);
+	    JwtUserDetails user = (JwtUserDetails) jwtJpaUserDetailsService.loadUserByUsername(username);
     	if (jwtTokenUtil.canTokenBeRefreshed(token)) {
 	        String refreshedToken = jwtTokenUtil.refreshToken(token);
 	        return ResponseEntity.ok(new JwtTokenResponse(refreshedToken));

@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.sina.todoappbackend.entity.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Long>{
-	Optional<Role> findByName(String roleName);
+	Optional<Role> findByRolename(String roleName);
 }

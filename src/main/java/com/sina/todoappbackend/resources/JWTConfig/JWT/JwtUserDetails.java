@@ -2,12 +2,14 @@ package com.sina.todoappbackend.resources.JWTConfig.JWT;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sina.todoappbackend.entity.Role;
 
 import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,19 +21,20 @@ public class JwtUserDetails implements UserDetails{
 	private final String password;
 	private final Collection<? extends GrantedAuthority>  authorities;
 	public JwtUserDetails(Long id, String username, String password,
-			String role) {
+			Set<Role> roles) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority(role));
+		roles.forEach(role->{
+			authorities.add(new SimpleGrantedAuthority(role.getRolename().name()));
+		});
 		this.authorities = authorities;
 	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return authorities;
 	}
 	
