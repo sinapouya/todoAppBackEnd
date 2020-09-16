@@ -30,7 +30,7 @@ import com.sina.todoappbackend.resources.JWTConfig.JWT.JwtJpaUserDetailsService;
 import com.sina.todoappbackend.resources.JWTConfig.JWT.JwtTokenUtil;
 import com.sina.todoappbackend.resources.JWTConfig.JWT.JwtUserDetails;
 @RestController
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(value = "*")
 public class JwtAuthenticationRestController {
 	
 	@Value(value = "${jwt.http.request.header}")
