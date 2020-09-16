@@ -30,7 +30,7 @@ import com.sina.todoappbackend.service.HardCodedToDoService;
 import com.sina.todoappbackend.service.ToDoJpaRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class TodoController {
 	@Autowired
 	private ToDoJpaRepository toDoService;
@@ -56,7 +56,7 @@ public class TodoController {
 											
 	}
 	@DeleteMapping(value = "/users/{userName}/todos/{todoId}")
-	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Void> deleteById(@PathVariable String userName,
 											@PathVariable Long todoId){
 			toDoService.deleteById(todoId);
@@ -77,7 +77,7 @@ public class TodoController {
 		
 	}
 	@PostMapping(value = "/users/{userName}/todos")
-	@PreAuthorize(value = "hasRole('ROLE_ADMIN')")
+	@PreAuthorize(value = "hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Void> createTodo(@PathVariable String userName,
 										    @RequestBody Todo todo){
 		todo.setUserName(userName);
